@@ -1,8 +1,8 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { ToyList } from "../cmps/toy-list"
-import { showErrorMsg } from "../services/event-bus.service"
-import { loadToys } from "../store/toy.action"
+import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
+import { loadToys, removeToy } from "../store/toy.action"
 
 export function ToyIndex() {
 
@@ -24,9 +24,23 @@ export function ToyIndex() {
             })
     }
 
+    function onRemoveToy(toyId){
+        removeToy(toyId)
+        .then(() => {
+            showSuccessMsg('Toy removed')
+        })
+        .catch(err => {
+            showErrorMsg('Cannot remove toy')
+        })
+    }
+
+
+
+
 
     return (
         <ToyList
-            toys={toys} />
+            toys={toys}
+            onRemoveToy={onRemoveToy}/>
     )
 }

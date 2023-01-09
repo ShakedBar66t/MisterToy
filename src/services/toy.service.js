@@ -14,7 +14,8 @@ export const toyService = {
     getById,
     save,
     remove,
-    getDefaultFilter
+    getDefaultFilter,
+    getEmptyToy
 }
 
 function query() {
@@ -25,11 +26,12 @@ function query() {
 }
 
 function getById(toyId) {
-    return storageService.get(STORAGE_KEY + toyId)
+    return storageService.get(STORAGE_KEY, toyId)
 }
 
 function remove(toyId) {
-    return httpService.delete(BASE_URL + toyId)
+    return storageService.remove(STORAGE_KEY, toyId)
+    // return httpService.delete(BASE_URL + toyId)
 }
 
 function save(toy) {
@@ -50,6 +52,7 @@ function _createToys() {
     if (!toys || !toys.length) {
         toys = []
         toys.push(_createToy('Talking Doll', 123, ['Doll', 'Battery Powered', 'Baby'], 1631031801011, true, `https://m.media-amazon.com/images/W/WEBP_402378-T2/images/I/51apIMpY0JL._AC_SL1026_.jpg` ))
+        toys.push(_createToy('Remote Control Helicopter', 150, ['Helicopter', 'Battery Powered', 'Army'], 1631031801011, true, `https://m.media-amazon.com/images/W/WEBP_402378-T2/images/I/61xZIpSZVSL._AC_SL1500_.jpg` ))
         localStorageService.saveToStorage(STORAGE_KEY, toys)
     }
 }

@@ -4,5 +4,6 @@
 
 /* Components */
 @import "cmps/app-header.css";
-@import "cmps/toy-preview.css"
+@import "cmps/toy-preview.css";
+@import "cmps/toy-list.css";
 
