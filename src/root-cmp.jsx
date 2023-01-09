@@ -9,7 +9,7 @@ import { AboutUs } from "./pages/about-us";
 import { HomePage } from './pages/home-page';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
-import { AppHeader } from './cmps/app.header';
+import { AppHeader } from './cmps/app-header';
 // import { AppFooter } from './cmps/app-footer';
 import { ToyIndex } from './pages/toy-index';
 

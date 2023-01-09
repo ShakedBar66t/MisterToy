@@ -1,0 +1,12 @@
+.toy-preview{
+    border: 1px black solid;
+    list-style-type: none;
+    text-align: center;
+    width: max-content;
+    height: max-content;
+}
+
+.toy-preview img{
+    width: 200px;
+    height: 200px;
+}

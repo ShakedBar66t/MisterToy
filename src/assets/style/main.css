@@ -3,5 +3,6 @@
 @import "base/base.css";
 
 /* Components */
-@import "cmps/app-header.css"
+@import "cmps/app-header.css";
+@import "cmps/toy-preview.css"
 
