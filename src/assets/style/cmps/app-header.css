@@ -1,0 +1,10 @@
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #202020;
+}
+
+.main-nav {
+    display: flex;
+    flex-direction: row;
+}

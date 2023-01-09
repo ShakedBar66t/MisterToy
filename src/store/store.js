@@ -7,7 +7,7 @@ const middleware = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__()
 
 const rootReducer = combineReducers({
     toyModule: toyReducer,
-    userModule: userReducer
+    // userModule: userReducer
 })
 
 export const store = createStore(rootReducer, middleware)

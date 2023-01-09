@@ -2,6 +2,7 @@
 // const { Route, Routes } = ReactRouterDOM
 // const { Provider } = ReactRedux
 // import './assets/style/main.css'
+import './assets/style/main.css'
 
 import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import { AboutUs } from "./pages/about-us";
@@ -18,7 +19,7 @@ export function App() {
 
     return (
         <Provider store={store}>
-            // <Router>
+            <Router>
                 <section className="main-layout app">
                     <AppHeader />
                     <main>
@@ -31,8 +32,8 @@ export function App() {
                     </main>
                     {/* <AppFooter /> */}
                 </section>
-            // </Router>
-        // </Provider>
+            </Router>
+        </Provider>
     )
 }
 
