@@ -4,6 +4,7 @@
     margin: 0rem;
     flex-direction: column;
     width: 100%;
+    height: 100%;
     align-content: center;
     padding: 0;
     overflow: hidden;
@@ -13,8 +14,28 @@
 }
 
 .toy-preview img{
-    width: 250px;
-    height: 250px;
+    width: 150px;
+    height: 150px;
     object-fit: contain;
     align-self: center;
+}
+
+.toy-preview a{
+    color: black;
+    text-decoration: none;
+    cursor: default;
+}
+
+.toy-preview a :hover{
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+}
+
+.green{
+    color: green;
+}
+
+.red{
+    color: red;
 }

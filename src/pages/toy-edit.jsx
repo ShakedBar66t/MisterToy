@@ -8,6 +8,7 @@ export function ToyEdit() {
     const params = useParams()
     const { toyId } = params
     const [toyToEdit, setToyToEdit] = useState(toyService.getEmptyToy())
+    console.log(toyToEdit)
 
     useEffect(() => {
         toyService.getById(toyId)

@@ -13,6 +13,7 @@ export const SET_IS_LOADING = 'SET_IS_LOADING'
 
 
 
+
 const initialState = {
     toys: [],
     lastRemovedToy: null,
@@ -47,7 +48,7 @@ export function toyReducer(state = initialState, action) {
             toys = [...state.toys, action.toy]
             return { ...state, toys }
         case UPDATE_TOY:
-            toys = state.toys.map(toy => toy._id === action.toy._id ? action.toy : toy)
+            toys = state.toys.map((toy) => (toy._id === action.toy._id ? action.toy : toy))
             return { ...state, toys }
 
         // Toyt

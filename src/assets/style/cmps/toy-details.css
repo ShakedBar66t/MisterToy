@@ -1,0 +1,17 @@
+.toy-details{
+    display: flex;
+    justify-content: center;
+}
+
+.toy-content{
+    border: 1px solid black;
+    background-color: blanchedalmond;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+}
+
+.toy-content img{
+    width: 200px;
+}

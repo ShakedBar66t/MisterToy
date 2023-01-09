@@ -7,7 +7,7 @@ export const storageService = {
 }
 
 function query(entityType, delay = 1500) {
-    var entities = JSON.parse(localStorage.getItem(entityType)) || []
+    const entities = JSON.parse(localStorage.getItem(entityType)) || []
     return new Promise(resolve => setTimeout(() => resolve(entities), delay))
 }
 
@@ -31,6 +31,7 @@ function post(entityType, newEntity) {
 
 function put(entityType, updatedEntity) {
     return query(entityType).then(entities => {
+        console.log(entities)
         const idx = entities.findIndex(entity => entity._id === updatedEntity._id)
         if (idx < 0) throw new Error(`Update failed, cannot find entity with id: ${updatedEntity._id} in: ${entityType}`)
         entities.splice(idx, 1, updatedEntity)
