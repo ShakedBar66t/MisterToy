@@ -16,14 +16,17 @@ export const toyService = {
     remove,
     getDefaultFilter,
     getEmptyToy,
-    getRandomToy
+    getRandomToy,
 }
 
-function query() {
-    // const queryParams = `?name=${filterBy.txt}&maxPrice=${filterBy.maxPrice}`
-    // return httpService.get(BASE_URL + queryParams)
-    return storageService.query(STORAGE_KEY)
-
+function query(filterBy = getDefaultFilter()) {
+    return storageService.query(STORAGE_KEY).then((toys) => {
+        if (filterBy.txt) {
+            const regex = new RegExp(filterBy.txt, 'i')
+            toys = toys.filter((toy) => regex.test(toy.name))
+        }
+        return toys
+    })
 }
 
 function getById(toyId) {
@@ -46,15 +49,15 @@ function save(toy) {
 }
 
 function getDefaultFilter() {
-    return { txt: '', maxPrice: 0 }
+    return { txt: '' }
 }
 
 function _createToys() {
     let toys = localStorageService.loadFromStorage(STORAGE_KEY) || []
     if (!toys || !toys.length) {
         toys = []
-        toys.push(_createToy('Talking Doll', 123, ['Doll', 'Battery Powered', 'Baby'], 1631031801011, false, `https://m.media-amazon.com/images/W/WEBP_402378-T2/images/I/51apIMpY0JL._AC_SL1026_.jpg` ))
-        toys.push(_createToy('Remote Control Helicopter', 150, ['Helicopter', 'Battery Powered', 'Army'], 1631031801011, true, `https://m.media-amazon.com/images/W/WEBP_402378-T2/images/I/61xZIpSZVSL._AC_SL1500_.jpg` ))
+        toys.push(_createToy('Talking Doll', 123, ['Doll', 'Battery Powered', 'Baby'], 1631031801011, false, `https://m.media-amazon.com/images/W/WEBP_402378-T2/images/I/51apIMpY0JL._AC_SL1026_.jpg`))
+        toys.push(_createToy('Remote Control Helicopter', 150, ['Helicopter', 'Battery Powered', 'Army'], 1631031801011, true, `https://m.media-amazon.com/images/W/WEBP_402378-T2/images/I/61xZIpSZVSL._AC_SL1500_.jpg`))
         localStorageService.saveToStorage(STORAGE_KEY, toys)
     }
 }
@@ -69,9 +72,9 @@ function getEmptyToy(name = '', price = '', labels = '', createdAt = '', inStock
     return { name, price, labels, createdAt, inStock, src }
 }
 
-function getRandomToy(){
+function getRandomToy() {
     return {
-        name : 'Teddy Bear', 
+        name: 'Teddy Bear',
         createdAt: new Date(),
         price: utilService.getRandomIntInclusive(50, 200),
         inStock: true,

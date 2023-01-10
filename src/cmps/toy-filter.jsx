@@ -3,43 +3,32 @@ import { toyService } from "../services/toy.service.js"
 import { utilService } from "../services/util.service.js"
 
 
-export function ToyFilter({ onSetFilter }) {
-
+export function ToyFilter({ setFilterBy }) {
     const [filterByToEdit, setFilterByToEdit] = useState(toyService.getDefaultFilter())
 
-    onSetFilter = useRef(utilService.debounce(onSetFilter))
-
-    const elInputRef = useRef(null)
 
     useEffect(() => {
-        onSetFilter.current(filterByToEdit)
+        setFilterBy(filterByToEdit)
     }, [filterByToEdit])
 
-    function onSubmitFilter(ev) {
-        ev.preventDefault()
-        onSetFilter(filterByToEdit)
-    }
 
-    function handleChange({target}){
-        let {value, name: field} = target
-        setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value}))
+    function handleChange(ev) {
+        const field = ev.target.name
+        const value = ev.target.value
+        setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
     }
 
 
 
     return <section className="toy-filter full main-layout">
         <h2>Toy Filter</h2>
-        <form onSubmit={onSubmitFilter}>
-            <label htmlFor="name">Name:</label>
-            <input
-                type="text"
-                id="name"
-                name="name"
-                placeholder="By toy name"
-                value={filterByToEdit.name}
-                onChange={handleChange}
-                ref={elInputRef}
-            />
-        </form>
+        <input
+            type="text"
+            id="txt"
+            name="txt"
+            placeholder="By toy name"
+            value={filterByToEdit.txt}
+            onChange={handleChange}
+        />
     </section>
 }

@@ -1,3 +1,4 @@
+import { toyService } from "../services/toy.service"
 
 export const SET_TOYS = 'SET_TOYS'
 export const REMOVE_TOY = 'REMOVE_TOY'
@@ -10,7 +11,7 @@ export const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 export const CLEAR_CART = 'CLEAR_CART'
 export const SET_IS_LOADING = 'SET_IS_LOADING'
 
-
+export const SET_FILTER = 'SET_FILTER'
 
 
 
@@ -18,8 +19,9 @@ const initialState = {
     toys: [],
     lastRemovedToy: null,
     isLoading: false,
-    isToytShown: false,
+    isToyShown: false,
     shoppingToy: [],
+    filterBy: toyService.getDefaultFilter()
 }
 
 
@@ -51,7 +53,11 @@ export function toyReducer(state = initialState, action) {
             toys = state.toys.map((toy) => (toy._id === action.toy._id ? action.toy : toy))
             return { ...state, toys }
 
-        // Toyt
+        // Filter
+        case SET_FILTER:
+            return { ...state, filterBy: action.filterBy }
+
+        // Cart
         case TOGGLE_CART_SHOWN:
             return { ...state, isToyShown: !state.isToyShown }
         case ADD_TO_CART:
