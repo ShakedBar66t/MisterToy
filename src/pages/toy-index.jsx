@@ -5,7 +5,7 @@ import { ToyList } from "../cmps/toy-list"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
 import { toyService } from "../services/toy.service"
 import { store } from "../store/store"
-import { loadToys, removeToy, saveToy, setFilter } from "../store/toy.action"
+import { filterToys, loadToys, removeToy, saveToy, setFilter } from "../store/toy.action"
 import { ToyDetails } from "./toy-details"
 
 export function ToyIndex() {
@@ -13,20 +13,10 @@ export function ToyIndex() {
     const toys = useSelector((storeState) => storeState.toyModule.toys)
     const filterBy = useSelector((storeState) => storeState.toyModule.filterBy)
 
-    const dispatch = useDispatch()
-
     useEffect(() => {
         loadToys(filterBy)
     }, [filterBy])
-
-    // function onLoadToys(filterBy) {
-    //     loadToys(filterBy)
-    //         .then(() => {
-    //         })
-    //         .catch(err => {
-    //             showErrorMsg('Cannot load toys')
-    //         })
-    // }
+    
 
     function onAddToy() {
         const toyToSave = toyService.getRandomToy()
@@ -49,15 +39,15 @@ export function ToyIndex() {
             })
     }
 
-    function setFilterBy(filterBy){
-        setFilter(filterBy)
+    function onSetFilterBy(filterBy){
+        filterToys(filterBy)
     }
 
 
 
 
     return <section>
-            <ToyFilter setFilterBy={setFilterBy} />
+            <ToyFilter onSetFilterBy={onSetFilterBy} />
 
         <button onClick={onAddToy}>Add random toy</button>
         <ToyList

@@ -17,10 +17,6 @@ export const SET_FILTER = 'SET_FILTER'
 
 const initialState = {
     toys: [],
-    lastRemovedToy: null,
-    isLoading: false,
-    isToyShown: false,
-    shoppingToy: [],
     filterBy: toyService.getDefaultFilter()
 }
 
@@ -55,19 +51,19 @@ export function toyReducer(state = initialState, action) {
 
         // Filter
         case SET_FILTER:
-            return { ...state, filterBy: action.filterBy }
+            return { ...state, filterBy: action.filterBy || action.newFilter }
 
         // Cart
-        case TOGGLE_CART_SHOWN:
-            return { ...state, isToyShown: !state.isToyShown }
-        case ADD_TO_CART:
-            shoppingToy = [...state.shoppingToy, action.toy]
-            return { ...state, shoppingToy }
-        case REMOVE_FROM_CART:
-            shoppingToy = state.shoppingToyt.filter(c => c._id !== action.toyId)
-            return { ...state, shoppingToy }
-        case CLEAR_CART:
-            return { ...state, shoppingToy: [] }
+        // case TOGGLE_CART_SHOWN:
+        //     return { ...state, isToyShown: !state.isToyShown }
+        // case ADD_TO_CART:
+        //     shoppingToy = [...state.shoppingToy, action.toy]
+        //     return { ...state, shoppingToy }
+        // case REMOVE_FROM_CART:
+        //     shoppingToy = state.shoppingToyt.filter(c => c._id !== action.toyId)
+        //     return { ...state, shoppingToy }
+        // case CLEAR_CART:
+        //     return { ...state, shoppingToy: [] }
 
         default:
             return state

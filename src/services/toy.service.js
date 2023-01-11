@@ -17,12 +17,13 @@ export const toyService = {
     getDefaultFilter,
     getEmptyToy,
     getRandomToy,
+    getToyLabels
 }
 
 function query(filterBy = getDefaultFilter()) {
     return storageService.query(STORAGE_KEY).then((toys) => {
-        if (filterBy.txt) {
-            const regex = new RegExp(filterBy.txt, 'i')
+        if (filterBy.name) {
+            const regex = new RegExp(filterBy.name, 'i')
             toys = toys.filter((toy) => regex.test(toy.name))
         }
         return toys
@@ -30,6 +31,7 @@ function query(filterBy = getDefaultFilter()) {
 }
 
 function getById(toyId) {
+    console.log(toyId)
     return storageService.get(STORAGE_KEY, toyId)
 }
 
@@ -49,7 +51,7 @@ function save(toy) {
 }
 
 function getDefaultFilter() {
-    return { txt: '' }
+    return {name: '', inStock: true , label: [], sortBy: '', desc: 1}
 }
 
 function _createToys() {
@@ -82,5 +84,10 @@ function getRandomToy() {
         labels: ['Teddy Bear', 'Happy', 'Fur']
 
     }
+}
+
+function getToyLabels() {
+    const labels = ["Doll", "Battery Powered", "Baby", "Helicopter", "Army", "Teddy Bear", "Happy", "Fur"]
+    return labels
 }
 

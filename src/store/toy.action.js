@@ -53,6 +53,6 @@ export function saveToy(toy) {
         })
 }
 
-export function setFilter(filterBy) {
+export function filterToys(filterBy) {
     store.dispatch({ type: SET_FILTER, filterBy })
 }
