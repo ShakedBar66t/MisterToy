@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import GoogleMapReact from 'google-map-react';
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
+const AnyReactComponent = ({ text }) => <div style={{ fontSize: '2.5rem' }}>{text}</div>;
+const Loc1 = ({ text }) => <div style={{ fontSize: '2.5rem' }}>{text}</div>
+const Loc2 = ({ text }) => <div style={{ fontSize: '2.5rem' }}>{text}</div>
+const Loc3 = ({ text }) => <div style={{ fontSize: '2.5rem' }}>{text}</div>
 
 export default function GoogleMap() {
 
     const [coordinates, setCoordinates] = useState({ lat: 32.0853, lng: 34.7818 })
     const zoom = 11
 
-    const handleClick = ({lat, lng}) => {
-        setCoordinates({lat, lng})
+    const handleClick = ({ lat, lng }) => {
+        setCoordinates({ lat, lng })
     }
 
     return (
@@ -26,7 +29,22 @@ export default function GoogleMap() {
                     // lat={coorinates.lat}
                     // lng={coorinates.lng}
                     {...coordinates}
-                    text="🍎🍎🍎"
+                    text="🧸"
+                />
+                <Loc1
+                    lat={32.3853}
+                    lng={34.8818}
+                    text="📍"
+                />
+                <Loc2
+                    lat={32.2853}
+                    lng={34.9818}
+                    text="📍"
+                />
+                <Loc3
+                    lat={32.1853}
+                    lng={34.7818}
+                    text="📍"
                 />
             </GoogleMapReact>
         </div>

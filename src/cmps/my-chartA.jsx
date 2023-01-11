@@ -1,16 +1,16 @@
 import React from 'react';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend, RadialLinearScale } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 
-ChartJS.register(ArcElement, Tooltip, Legend);
+ChartJS.register(RadialLinearScale,ArcElement, Tooltip, Legend);
 
-export function MyChart() {
+export function LabelsCountChart({ dataMap }) {
     const data = {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: Object.keys(dataMap),
         datasets: [
             {
-                label: 'number of Votes',
-                data: [12, 19, 3, 5, 2, 3],
+                label: 'Toys Amount',
+                data: Object.values(dataMap),
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -18,6 +18,7 @@ export function MyChart() {
                     'rgba(75, 192, 192, 0.2)',
                     'rgba(153, 102, 255, 0.2)',
                     'rgba(255, 159, 64, 0.2)',
+                    'rgba(269, 140, 205, 0.5)',
                 ],
                 borderColor: [
                     'rgba(255, 99, 132, 1)',
@@ -26,13 +27,15 @@ export function MyChart() {
                     'rgba(75, 192, 192, 1)',
                     'rgba(153, 102, 255, 1)',
                     'rgba(255, 159, 64, 1)',
+                    'rgba(269, 140, 205, 0.5)',
                 ],
-                borderWidth: 1,
+                borderWidth: 2,
             },
         ],
     };
     return (
-        <div style={{width: '60%', margin: 'auto'}}>
+        <div style={{width: '40%', margin: 'auto'}}>
+            <h1>Amounts</h1>
             <Doughnut data={data}/>
         </div>
 

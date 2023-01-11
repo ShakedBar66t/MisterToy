@@ -10,7 +10,7 @@ import { HomePage } from './pages/home-page';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
 import { AppHeader } from './cmps/app-header';
-// import { AppFooter } from './cmps/app-footer';
+import { AppFooter } from './cmps/app-footer';
 import { ToyIndex } from './pages/toy-index';
 import { ToyEdit } from './pages/toy-edit';
 import { ToyDetails } from './pages/toy-details';
@@ -34,7 +34,7 @@ export function App() {
 
                         </Routes>
                     </main>
-                    {/* <AppFooter /> */}
+                    <AppFooter />
                 </section>
             </Router>
         </Provider>
